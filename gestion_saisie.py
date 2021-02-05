@@ -1,27 +1,30 @@
-lettreutilisee = []
+def gestion_saisie(partie):
+    saisie = input("Votre choix : ")
 
-def gestion_saisie(saisie, mot_rechercher):
-    if saisie == "indice" or saisie == "devoiler":
-
+    if saisie == "indice" and partie.indice_utiliser is False:
+        partie.indice_utiliser = True
+        return saisie
+    elif saisie == "indice" and partie.indice_utiliser is True:
+        print("Vous avez déjà utiliser l'indice pour cette partie.")
+    elif saisie == "devoiler" and partie.lettre_devoilee is False:
+        partie.lettre_devoilee = True
+        return saisie
+    elif saisie == "devoiler" and partie.lettre_devoilee is True:
+        print("Vous avez déjà dévoilé une lettre")
     else:
         if saisie.isalpha() and len(saisie) == 1:
-
-        if saisie.isalpha() and len(saisie) != 1:
-            print("Vous devez saisir une seule lettre")
-
-
-
-def verification_lettre(mot, saisie):
-    if saisie.isalpha() and len(saisie) == 1:
-        if saisie in lettreutilisee:
-            print("Vous avez déjà utilisé cette lettre.")
-        else:
-            lettreutilisee.append(saisie)
-            lettreutilisee.sort()
-            if mot.count(saisie) > 0:
-                return True
+            if partie.lettre_utilisees.count(saisie) == 0:
+                partie.lettre_utilisees.append(saisie)
+                partie.lettre_utilisees.sort()
+                if partie.mot_rechercher.count(saisie) == 0:
+                    return False
+                else:
+                    return True
             else:
-                return False
-    else:
-        print("Vous devez saisir une lettre.")
-        return None
+                print("Vous avez déjà entré cette lettre")
+                return "dejaentree"
+        elif saisie.isalpha() and len(saisie) != 1:
+            print("Vous devez saisir une seule lettre")
+            return saisie
+        else:
+            return False
