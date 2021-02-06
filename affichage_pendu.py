@@ -1,3 +1,4 @@
+# Fonction qui permet d'afficher le pendu selon le nombre d'erreurs commises.
 def affichage_pendu(nberreurs):
     if nberreurs == -1:
         print("__________")

@@ -1,6 +1,7 @@
 import random
 
 
+# Classe contenant les informations du mot rechercher durant la partie.
 class Mot_Rechercher:
     def __init__(self, mot, indice):
         self.mot = mot
@@ -19,6 +20,7 @@ liste_mot = {"abricot": "Gros fruit charnu, sucré et savoureux, dont le noyau l
              }
 
 
+# Fonction qui permet de tirer un mot au hasard.
 def tirage_mot(dictionnaire):
     mot = random.choice(list(dictionnaire))
     indice = dictionnaire.get(mot)
